@@ -1,0 +1,152 @@
+{% load static %}
+<html>
+<head>
+
+    <script>
+    function checkpass()
+    {
+    if(document.signup.pwd.value!=document.signup.cpwd.value)
+    {
+    alert('Password and Repeat Password field does not match');
+    document.signup.cpwd.focus();
+    return false;
+    }
+    return true;
+    }
+</script>
+
+</head>
+<body>
+{% include 'navigation.html' %}
+<br><br>
+<hr class="mt-0">
+
+<div class="card shadow m-5" id = signupform>
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 2px solid orange;">Create an Account (Volunteer)</h5>
+<div class="container-fluid">
+<form method="post" name = "signup" onsubmit="return checkpass();" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row mb-3">
+        <div class="col">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstname"
+            placeholder="Enter your first name"
+            required
+            pattern="[A-Za-z]+"
+          />
+        </div>
+        <div class="col">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastname"
+            placeholder="Enter your last name"
+            required
+            pattern="[A-Za-z]+"
+          />
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="col">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div class="col">
+          <label for="contactNo" class="form-label">Contact No</label>
+          <input
+            type="tel"
+            class="form-control"
+            name="contact"
+            placeholder="Enter your contact number"
+          />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="pwd"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+        <div class="col">
+          <label for="confirmPassword" class="form-label"
+            >Confirm Password</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            name="cpwd"
+            placeholder="Confirm your password"
+            required
+          />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label for="photo" class="form-lable">User PIC</label>
+            <input type="file" name="userpic" class="form-control">
+        </div>
+
+        <div class="col">
+            <label for="idpic" class="form-lable">ID Proof PIC(Aadhar ID , Voter ID , Pan Card etc.)</label>
+            <input type="file" name="idpic" class="form-control">
+            </div>
+        </div>
+
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Address</label>
+                <textarea name="address" class="form-control" placeholder="Full Address"></textarea>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>About Yourself</label>
+                <textarea name="aboutme" class="form-control" placeholder="About Yourself"></textarea>
+            </div>
+        </div>
+
+
+    </div>
+    <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+</form>
+</div>
+</div>
+</div>
+
+
+{% if error == "no" %}
+<script>
+    alert('Signup Successfully');
+    window.location=('{% url 'volunteer_login' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong,Try Again...');
+</script>
+{% endif %}
+
+
+</body>
+</html>

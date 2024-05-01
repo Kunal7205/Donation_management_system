@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'CSS/donor_singup.css' %}">
+    <script src="{% static 'JS/password.js' %}"></script>
+  </head>
+  <body>
+    {% include 'navigation.html' %}
+    <br><br>
+    <div class="card shadow m-5" id="signupform">
+      <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 2px solid orange">
+          Create An Account(Donor)
+        </h5>
+        <div class="container-fluid">
+          <form method="post" enctype="multipart/form-data" name="singup" onsubmit="return checkpassword()">
+            {% csrf_token %}
+            <div class="row mb-3">
+              <div class="col">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="firstname"
+                  placeholder="Enter your first name"
+                  required
+                  pattern="[A-Za-z]+"
+                />
+              </div>
+              <div class="col">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="lastname"
+                  placeholder="Enter your last name"
+                  required
+                  pattern="[A-Za-z]+"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div class="col">
+                <label for="contactNo" class="form-label">Contact No</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  name="contact"
+                  placeholder="Enter your contact number"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="pwd"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+              <div class="col">
+                <label for="confirmPassword" class="form-label"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  name="cpwd"
+                  placeholder="Confirm your password"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="photo" class="form-label">Upload Photo</label>
+              <input
+                type="file"
+                class="form-control"
+                name="userpic"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea
+                class="form-control"
+                id="address"
+                name="address"
+                rows="3"
+                placeholder="Enter your address"
+                required
+              ></textarea>
+            </div>
+            <div class="text-center">
+                <input
+              type="submit"
+              value="Submit"
+              class="btn btn-primary m-2 px-3 col-3"
+            />
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% if error == "no" %}
+    <script>
+        alert('Singup Successful');
+        window.location=('{% url 'donorlogin' %}');
+    </script>
+    {% endif %}
+    {% if error == "yes" %}
+    <script>
+        alert('Somthing went wrong! Try Again');
+    </script>
+    {% endif %}
+  </body>
+</html>

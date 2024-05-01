@@ -1,0 +1,62 @@
+{% load static %}
+<html>
+<head>
+<style>
+    body{
+    background:url('{% static 'images/gradient1.jpg' %}');
+    background-size : 100%;
+    {% comment %} background-position : 0px 80px; {% endcomment %}
+    background-repeat : no-repeat;
+    opacity : 0.9
+    }
+</style>
+</head>
+<body>
+{% include 'navigation.html' %}
+<hr class="mt-0">
+<br><br>
+<div class="container mt-5">
+  <h2 class="text-center" style="color:white">Login AS a...</h2>
+  <div class="row mt-5">
+      <div class="col-lg-4">
+          <div class="card style="width:300px">
+              <img src="{% static "images/donation-login.jpg" %}" class="card-img-top" alt="" style="width:100%; height:200px">
+              <div class="card-body">
+                  <h4 class="card-title">Donor</h4>
+                  <p class="card-text">Some Example Text.</p>
+                  <a href="{% url 'donorlogin' %}" class="btn btn-primary">Go to Donar Login</a>
+              </div>
+
+          </div>
+      </div>
+
+      <div class="col-lg-4">
+          <div class="card style="width:300px">
+              <img src="{% static "images/volunteer-login.png" %}" class="card-img-top" alt="" style="width:100%; height:200px">
+              <div class="card-body">
+                  <h4 class="card-title">Volunteer</h4>
+                  <p class="card-text">Some Example Text.</p>
+                  <a href="{% url 'volunteer_login' %}" class="btn btn-primary">Go to Volunteer Login</a>
+              </div>
+
+          </div>
+      </div>
+
+      <div class="col-lg-4">
+          <div class="card style="width:300px">
+              <img src="{% static "images/admin-login.jpeg" %}" class="card-img-top" alt="" style="width:100%; height:200px">
+              <div class="card-body">
+                  <h4 class="card-title">Admin</h4>
+                  <p class="card-text">Some Example Text.</p>
+                  <a href="{% url 'admin_login' %}" class="btn btn-primary">Go to Admin Login</a>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+</div>
+
+
+</body>
+</html>
